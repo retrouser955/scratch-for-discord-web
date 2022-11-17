@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.blocklyFlyoutScrollbar[display="none"] {
+  display: none;
+}
+
+@layer components {
+  .sidebar-icon {
+    @apply shadow-lg relative flex items-center justify-center h-12 w-12 mt-2 mx-auto dark:bg-gray-600 ease-linear cursor-pointer hover:bg-green-900 dark:hover:bg-green-900 transition-all duration-200 rounded-3xl hover:rounded-xl bg-white my-11
+  }
+}
