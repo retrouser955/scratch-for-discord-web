@@ -11,3 +11,30 @@
     @apply shadow-lg relative flex items-center justify-center h-12 w-12 mt-2 mx-auto dark:bg-gray-600 ease-linear cursor-pointer hover:bg-green-900 dark:hover:bg-green-900 transition-all duration-200 rounded-3xl hover:rounded-xl bg-white my-11
   }
 }
+
+/* Toolbox Styling */
+.sepDark {
+  border-bottom: solid #293448 1px;
+  height: 1px;
+  margin: 5px 0;
+}
+
+.blocklyTreeLabel {
+  text-align: center;
+}
+
+/* Adds padding around the group of categories and separators. */
+.blocklyToolboxContents {
+  padding: 0.2em;
+}
+
+/* Adds space between the categories, rounds the corners and adds space around the label. */
+.blocklyTreeRow {
+  padding: 4px;
+  border-radius: 5px;
+}
+
+.blocklyTreeRowContentContainer {
+  display: flex;
+  align-items: center;
+}

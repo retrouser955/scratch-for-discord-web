@@ -9,7 +9,7 @@ import { IoLogoOctocat, IoLogoJavascript } from "react-icons/io"
 import { Link } from "react-router-dom"
 
 function App() {
-  const [isDark, setIsDark] = useState(true)
+  const [isDark, setIsDark] = useState(window.document.body.classList.contains("dark"))
 
   const callback = useCallback((div) => {
     if(div == null) return

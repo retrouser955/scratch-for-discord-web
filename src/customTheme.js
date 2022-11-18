@@ -3,10 +3,10 @@ import Blockly from "blockly/core"
 const themeObj = {
     base: Blockly.Themes.Classic,
     'componentStyles': {
-        'workspaceBackgroundColour': '#6c8eb4',
-        'toolboxBackgroundColour': '#505f77',
+        'workspaceBackgroundColour': '#404258',
+        'toolboxBackgroundColour': '#474E68',
         'toolboxForegroundColour': '#fff',
-        'flyoutBackgroundColour': '#505f80',
+        'flyoutBackgroundColour': '#50577A',
         'flyoutForegroundColour': '#ccc',
         'flyoutOpacity': .5,
         'scrollbarColour': '#797979',
