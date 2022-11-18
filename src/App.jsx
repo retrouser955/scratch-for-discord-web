@@ -35,9 +35,9 @@ function App() {
     <>
       <div className="h-screen w-screen flex">
         <div className="w-[5vw] h-full dark:bg-gray-700 transition-all bg-gray-300">
-          <SideNavIcon icon={<IoLogoOctocat size="28" className="group-hover:text-white transition-all text-green-600" />} text="Scratch For Discord" />
+          <SideNavIcon icon={<IoLogoOctocat size="28" className="group-hover:text-white transition-all text-green-900" />} text="Scratch For Discord" />
           <Link to="/javascript">
-            <SideNavIcon icon={<IoLogoJavascript size="28" className="group-hover:text-white transition-all text-green-600" />} text="Generate Javascript" />
+            <SideNavIcon icon={<IoLogoJavascript size="28" className="group-hover:text-white transition-all text-green-900" />} text="Generate Javascript" />
           </Link>
           <div onClick={() => {
             setIsDark(!isDark)
