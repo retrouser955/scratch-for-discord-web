@@ -3,7 +3,7 @@ import SideNavIconSettings from "./DarkIcon"
 import React, { useEffect } from 'react'
 import { IoLogoOctocat, IoLogoJavascript } from "react-icons/io"
 import { Link } from "react-router-dom"
-import { javascriptGenerator } from 'blockly/javascript';
+import generateJSCode from "../utils/generateJS"
 import 'prismjs/themes/prism-tomorrow.css'
 import * as Prism from 'prismjs'
 
@@ -11,12 +11,12 @@ export default function Javascript() {
     const [isDark, setIsDark] = React.useState(window.document.body.classList.contains("dark"))
     const [javascriptCode, setJavascriptCode] = React.useState(null)
     useEffect(() => {
-        console.log(window.blocklyMain)
-        setJavascriptCode(javascriptGenerator.workspaceToCode(window.blocklyMain))
+        const javascriptCode = generateJSCode(window.blocklyMain)
+        setJavascriptCode(javascriptCode)
     }, [])
     return (
         <div className="h-screen w-screen flex">
-            <div className="w-[5vw] h-full dark:bg-gray-700 transition-all bg-gray-300">
+            <div className="w-[5vw] h-full dark:bg-gray-1000 transition-all bg-gray-300">
                 <SideNavIcon icon={<IoLogoOctocat size="28" className="group-hover:text-white transition-all text-green-600" />} text="Scratch For Discord" />
                 <Link to={"/"}>
                     <SideNavIcon icon={<IoLogoJavascript size="28" className="group-hover:text-white transition-all text-green-600" />} text="Generate Javascript" />
