@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.custom-font {
+    font-family: 'Ubuntu' !important;
+}
+
+@layer {
+    .items {
+        @apply h-[70%] w-[10%] bg-amber-600 rounded-sm mx-3 text-white flex items-center pl-3 custom-font cursor-pointer font-bold border-2 overflow-hidden
+    }
+}
