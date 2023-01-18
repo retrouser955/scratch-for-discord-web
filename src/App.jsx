@@ -11,10 +11,10 @@ function App() {
   const [isCollapsed, setIsCollapsed] = useState(false)
   const cb = useCallback((element) => {
     if(element == null) return
-    let currentXML, X, Y, isToolboxHidden
+    let currentJSON, X, Y, isToolboxHidden
 
     if(window.blocklyMain) {
-      currentXML = Blockly.Xml.workspaceToDom(window.blocklyMain)
+      currentJSON = Blockly.serialization.workspaces.save(window.blocklyMain)
       X = window.blocklyMain.scrollX
       Y = window.blocklyMain.scrollY
       isToolboxHidden = window.blocklyMain.toolbox_.isVisible_
@@ -27,17 +27,19 @@ function App() {
     blocklyDiv.classList.add("w-full")
 
     element.append(blocklyDiv)
-
+    
     const blocklyMainWorkspace = createBlocklyWorkspace(blocklyDiv, toolbox)
 
-    if(currentXML) {
-      Blockly.Xml.domToWorkspace(currentXML, blocklyMainWorkspace)
+    if(currentJSON) {
+      Blockly.serialization.workspaces.load(currentJSON, blocklyMainWorkspace)
       blocklyMainWorkspace.scroll(X, Y)
     }
     
     window.blocklyMain = blocklyMainWorkspace
 
-    blocklyMainWorkspace.getToolbox().setVisible(isToolboxHidden ? true : false)
+    if(currentJSON) {
+      blocklyMainWorkspace.getToolbox().setVisible(isToolboxHidden)
+    }
   })
 
   return (
