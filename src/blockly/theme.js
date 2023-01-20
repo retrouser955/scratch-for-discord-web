@@ -9,11 +9,11 @@ const DarkTheme = Blockly.Theme.defineTheme('scratch-for-discord', {
         'toolboxForegroundColour': '#fff',
         'flyoutBackgroundColour': '#121212',
         'flyoutForegroundColour': '#ccc',
-        'flyoutOpacity': 0.5,
+        'flyoutOpacity': .6,
         'scrollbarColour': '#797979',
         'insertionMarkerColour': '#fff',
         'insertionMarkerOpacity': 0.3,
-        'scrollbarOpacity': 0.01,
+        'scrollbarOpacity': 0.3,
         'cursorColour': '#d0d0d0',
     },
 });
