@@ -15,12 +15,12 @@ window.onunload = () => {
 function App() {
   const [isCollapsed, setIsCollapsed] = useState(false)
 
-  const storageData = localStorage.getItem("main")
+  const storageData = localStorage.getItem("index")
 
-  window.currentFile = "main"
+  window.currentFile = "index"
 
   if(storageData == null) {
-    localStorage.setItem("main", "{}")
+    localStorage.setItem("index", "{}")
     localStorage.setItem("ping", "{}")
     localStorage.setItem("avatar", "{}")
   }
@@ -56,8 +56,8 @@ function App() {
     if(currentJSON)
       return blocklyMainWorkspace.getToolbox().setVisible(isToolboxHidden)
       
-    if(localStorage.getItem('main')) {
-      Blockly.serialization.workspaces.load(JSON.parse(localStorage.getItem("main")), blocklyMainWorkspace)
+    if(localStorage.getItem('index')) {
+      Blockly.serialization.workspaces.load(JSON.parse(localStorage.getItem("index")), blocklyMainWorkspace)
     }
   })
 
@@ -66,7 +66,7 @@ function App() {
       <Sidebar collapsed={[isCollapsed, setIsCollapsed]} />
       <Navbar />
       <div className={`bottom-0 right-0 bg-slate-900 ${isCollapsed ? "w-[97vw]" : "w-[83vw]"} h-[92vh] absolute`}>
-        <FileSelector tabs={["main", "ping", "avatar"]} />
+        <FileSelector tabs={["index", "ping", "avatar"]} />
         <div className="w-full h-[95%] bg-neutral-900" ref={cb}></div>
       </div>
     </div>

@@ -12,7 +12,7 @@ export default function ToolboxUtils() {
     return (
         <div className="w-full h-full pt-2">
             <div 
-            className="w-[60%] h-7 cursor-pointer font-bold rounded-md select-none hover:border-2 hover:border-cyan-500 transition-all mx-auto bg-orange-600 flex items-center justify-center"
+            className="w-[60%] h-7 cursor-pointer font-bold rounded-md select-none hover:border-2 transition-all mx-auto bg-orange-600 flex items-center justify-center"
             onClick={HideToolbox}
             >Toggle Toolbox</div>
         </div>

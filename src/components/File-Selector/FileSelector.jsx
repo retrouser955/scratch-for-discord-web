@@ -11,7 +11,9 @@ export default function FileSelector({ tabs }) {
                 <div className="items" onClick={() => {
                     switchFiles(value)
                 }}>
-                    <div className="h-full w-[60%]">{value}</div>
+                    <div className="h-full w-full flex">
+                        {value}.js
+                    </div>
                 </div>
             </>
         })

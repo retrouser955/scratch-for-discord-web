@@ -1,16 +1,34 @@
-import { AiFillFolder, AiFillFileAdd } from "react-icons/ai"
-import { BsFileEarmarkCodeFill } from "react-icons/bs"
-import { BiUserCircle } from "react-icons/bi"
+import { AiFillFileAdd } from "react-icons/ai"
 import { useState } from "react"
 import { CgFormatIndentDecrease } from "react-icons/cg"
-import { SiJson, SiJavascript } from "react-icons/si"
+import { SiJavascript } from "react-icons/si"
 import User from "./User/User"
 import Swal from "sweetalert2"
 import ToolboxUtils from "./ToolboxUtils/ToolboxUtils"
+import switchFiles from "../../utils/switchFiles"
+import { useEffect } from "react"
+import exportData from "./SidebarConstants/export"
+
+const { Package, Command, Index, SidebarTabs } = exportData
 
 export default function Sidebar({ collapsed }) {
   const [activeState, setActiveState] = useState(0)
+  const [currentCommands, setCurrentCommands] = useState([])
   const [isCollapsed, setIsCollapsed] = collapsed
+
+  useEffect(() => {
+    const localStorageKeys = Object.keys(localStorage).filter((val) => val !== "index")
+    setCurrentCommands(localStorageKeys.map((val) => {
+      return <div className="flex justify-center cursor-pointer ml-3" onClick={() => switchFiles(val)} key={val}>
+        <div className="w-full pl-3 font-bold flex items-center h-7 hover:shadow-lg hover:border-2 border-l-2 transition-all">
+          <div className="h-[70%] mr-1">
+            <SiJavascript className="h-full w-full bg-white rounded-sm text-yellow-600" />
+          </div>
+          {val}.js
+        </div>
+      </div>
+    }))
+  }, [])
 
   return (
     <>
@@ -22,24 +40,7 @@ export default function Sidebar({ collapsed }) {
           <div className="h-screen w-[17vw] bg-[#0a0a0a] top-0 left-0 absolute flex">
             <div className="h-screen w-[3vw] bg-zinc-900 pt-[7vh]">
               <div>
-                <div className="w-full mx-auto py-2 px-1">
-                  <AiFillFolder
-                    className={`text-white h-full w-[90%] block mx-auto cursor-pointer transition-all ${activeState === 0 ? "text-orange-500" : ""}`}
-                    onClick={() => setActiveState(0)}
-                  />
-                </div>
-                <div className="w-full mx-auto border-t-2 py-2 px-1 border-orange-900">
-                  <BsFileEarmarkCodeFill
-                    className={`text-white h-full w-[90%] block mx-auto cursor-pointer transition-all ${activeState === 1 ? "text-orange-500" : ""}`}
-                    onClick={() => setActiveState(1)}
-                  />
-                </div>
-                <div className="w-full mx-auto border-y-2 py-2 px-1 border-orange-900">
-                  <BiUserCircle
-                    className={`text-white h-full w-[90%] block mx-auto cursor-pointer transition-all ${activeState === 2 ? "text-orange-500" : ""}`}
-                    onClick={() => setActiveState(2)}
-                  />
-                </div>
+                <SidebarTabs setActiveState={setActiveState} activeState={activeState} />
               </div>
             </div>
             <div className="w-full h-[90%] transition-all text-white pt-[10vh]">
@@ -67,30 +68,11 @@ export default function Sidebar({ collapsed }) {
               {
                 activeState === 0 ?
                   <>
-                    <div className="flex justify-center cursor-pointer">
-                      <div className="w-full pl-3 font-bold flex items-center h-7 hover:shadow-lg hover:border-2 transition-all">
-                        <div className="h-[70%] mr-1">
-                          <AiFillFolder className="h-full w-full" />
-                        </div>
-                        commands
-                      </div>
-                    </div>
-                    <div className="flex justify-center cursor-pointer">
-                      <div className="w-full pl-3 font-bold flex items-center h-7 hover:shadow-lg hover:border-2 transition-all">
-                        <div className="h-[70%] mr-1">
-                          <SiJavascript className="h-full w-full bg-white rounded-sm text-yellow-600" />
-                        </div>
-                        index.js
-                      </div>
-                    </div>
-                    <div className="flex justify-center cursor-pointer">
-                      <div className="w-full pl-3 font-bold flex items-center h-7 hover:shadow-lg hover:border-2 transition-all">
-                        <div className="h-[70%] mr-1">
-                          <SiJson className="h-full w-full" />
-                        </div>
-                        package.json
-                      </div>
-                    </div>
+                    <Command />
+                    {currentCommands ? currentCommands : ""}
+                    <Index />
+                    <div className="w-[90%] h-[1px] rounded-lg mx-auto bg-white my-1"></div>
+                    <Package />
                   </>
                   :
                   activeState === 1 ?
