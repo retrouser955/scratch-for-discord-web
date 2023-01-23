@@ -94,6 +94,17 @@ const toolbox = {
                 }
             ]
         },
+        {
+            "kind": "category",
+            "name": "Base",
+            "colour": "#FFFFFF",
+            "contents": [
+                {
+                    "type": "eventClientConnected",
+                    "kind": "block"
+                }
+            ]
+        }
     ]
 }
 

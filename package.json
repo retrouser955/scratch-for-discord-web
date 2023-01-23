@@ -11,6 +11,7 @@
   "dependencies": {
     "@blockly/theme-dark": "^4.0.2",
     "@blockly/theme-modern": "^3.0.2",
+    "axios": "^1.2.3",
     "blockly": "^9.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

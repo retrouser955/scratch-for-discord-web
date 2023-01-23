@@ -7,6 +7,10 @@ import createBlocklyWorkspace from "./utils/createBlocklyWorkspace"
 import toolbox from "./toolbox"
 import "./index.css"
 
+// load the blocks
+
+import "./blockly/blocks/discord/base/index"
+
 // development: unload localstorage on leave
 window.onunload = () => {
   localStorage.clear()
@@ -50,7 +54,7 @@ function App() {
       Blockly.serialization.workspaces.load(currentJSON, blocklyMainWorkspace)
       blocklyMainWorkspace.scroll(X, Y)
     }
-    
+    blocklyMainWorkspace.addChangeListener(Blockly.Events.disableOrphans)
     window.blocklyMain = blocklyMainWorkspace
 
     if(currentJSON)
