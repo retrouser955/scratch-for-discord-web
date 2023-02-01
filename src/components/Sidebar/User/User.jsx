@@ -92,7 +92,7 @@ export default function User() {
                                             }).then((data) => {
                                                 setDiscord({
                                                     username: `${data.value.username}#${data.value.discriminator}`,
-                                                    logo: data.data.avatar ? `https://cdn.discordapp.com/avatars/${discordId.current}/${data.value.avatar}` : "",
+                                                    logo: data.value.avatar ? `https://cdn.discordapp.com/avatars/${discordId.current}/${data.value.avatar}` : "",
                                                     url: undefined
                                                 })
                                                 
