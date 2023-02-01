@@ -78,7 +78,7 @@ export default function User() {
                                                 confirmButtonText: "Enter",
                                                 showLoaderOnConfirm: true,
                                                 preConfirm: async (token) => {
-                                                    const data = await axios.get(`https://scratch-for-discord-api.onrender.com/user/${discordId.current}`, {
+                                                    const data = await axios.get(`https://shy-tan-hare-gown.cyclic.app/user/${discordId.current}`, {
                                                         headers: {
                                                             "Content-Type": "Application/json",
                                                             "Authorization": token
