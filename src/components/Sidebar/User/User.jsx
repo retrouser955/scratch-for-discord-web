@@ -7,6 +7,7 @@ import axios from "axios"
 
 export default function User() {
     const discordId = useRef(null)
+    const token = useRef(null)
 
     const [github, _setGithub] = useState({
         username: undefined,
@@ -84,14 +85,20 @@ export default function User() {
                                                         }
                                                     })
 
+                                                    token.current
+
                                                     return data.data
                                                 }
                                             }).then((data) => {
                                                 setDiscord({
                                                     username: `${data.value.username}#${data.value.discriminator}`,
-                                                    logo: `https://cdn.discordapp.com/avatars/${discordId.current}/${data.value.avatar}`,
+                                                    logo: data.data.avatar ? `https://cdn.discordapp.com/avatars/${discordId.current}/${data.value.avatar}` : "",
                                                     url: undefined
                                                 })
+                                                
+                                                localStorage.setItem("token", token.current)
+
+                                                token.current = undefined
                                             })
                                         },
                                     })

@@ -16,6 +16,13 @@ window.onunload = () => {
   localStorage.clear()
 }
 
+console.log(
+  "%cSTOP!!!!",
+  "color:red;font-family:system-ui;font-size:4rem;-webkit-text-stroke: 1px black;font-weight:bold"
+)
+
+console.log("You are now viewing the developer tools! This is a section built for website developers. If someone told you to paste something in here, we recommand you to not do that as it may expose sensitive information. If you do not know what you are doing, we recommand you to close this immediately. If you do know what you are doing, join our Discord server https://discord.gg/3ufAFFw9xR and contribute to our work!")
+
 function App() {
   const [isCollapsed, setIsCollapsed] = useState(false)
 

@@ -1,4 +1,5 @@
 import { BiPlay } from 'react-icons/bi'
+import generateCode from '../../utils/generateCode'
 
 export default function Navbar() {
   return (
@@ -11,7 +12,9 @@ export default function Navbar() {
         <input className="h-[5vh] w-[10vw] rounded flex bg-stone-900 justify-center items-center hover:border-2 transition-all cursor-pointer p-2 mx-3" type="text" placeholder="Name your project" />
         <div
           className="h-[5vh] w-[5vh] rounded flex bg-stone-900 justify-center items-center hover:border-2 transition-all cursor-pointer"
-          onClick={() => {}}
+          onClick={() => {
+            console.log(generateCode(localStorage.getItem("isPrefix") == true))
+          }}
         >
           <BiPlay className="h-[95%] w-[95%] text-zinc-400" />
         </div>
