@@ -25,6 +25,7 @@ console.log("You are now viewing the developer tools! This is a section built fo
 
 function App() {
   const [isCollapsed, setIsCollapsed] = useState(false)
+  const [commands, setCommands] = useState(Object.keys(localStorage).filter(val => typeof val != 'function' && val != "token"))
 
   const storageData = localStorage.getItem("index")
 
@@ -74,10 +75,10 @@ function App() {
 
   return (
     <div className="h-screen w-screen flex">
-      <Sidebar collapsed={[isCollapsed, setIsCollapsed]} />
+      <Sidebar collapsed={[isCollapsed, setIsCollapsed]} cmds={[commands, setCommands]} />
       <Navbar />
       <div className={`bottom-0 right-0 bg-slate-900 ${isCollapsed ? "w-[97vw]" : "w-[83vw]"} h-[92vh] absolute`}>
-        <FileSelector tabs={["index", "ping", "avatar"]} />
+        <FileSelector tabs={commands} />
         <div className="w-full h-[95%] bg-neutral-900" ref={cb}></div>
       </div>
     </div>

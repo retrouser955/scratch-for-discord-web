@@ -11,14 +11,14 @@ import exportData from "./SidebarConstants/export"
 
 const { Package, Command, Index, SidebarTabs } = exportData
 
-export default function Sidebar({ collapsed }) {
+export default function Sidebar({ collapsed, cmds }) {
   const [activeState, setActiveState] = useState(0)
-  const [currentCommands, setCurrentCommands] = useState([])
+  const [currentCommands, _setCurrentCommands] = cmds
+  const [command, setCommand] = useState()
   const [isCollapsed, setIsCollapsed] = collapsed
 
   useEffect(() => {
-    const localStorageKeys = Object.keys(localStorage).filter((val) => val !== "index")
-    setCurrentCommands(localStorageKeys.map((val) => {
+    setCommand(currentCommands.filter((val) => val != "index").map((val) => {
       return <div className="flex justify-center cursor-pointer ml-3" onClick={() => switchFiles(val)} key={val}>
         <div className="w-full pl-3 font-bold flex items-center h-7 hover:shadow-lg hover:border-2 border-l-2 transition-all">
           <div className="h-[70%] mr-1">
@@ -29,6 +29,24 @@ export default function Sidebar({ collapsed }) {
       </div>
     }))
   }, [])
+
+  function addCommand(cmd) {
+    localStorage.setItem(cmd, JSON.stringify({}))
+    
+    const dupeCmd = [...command]
+    dupeCmd.push(
+      <div className="flex justify-center cursor-pointer ml-3" onClick={() => switchFiles(cmd)} key={cmd}>
+        <div className="w-full pl-3 font-bold flex items-center h-7 hover:shadow-lg hover:border-2 border-l-2 transition-all">
+          <div className="h-[70%] mr-1">
+            <SiJavascript className="h-full w-full bg-white rounded-sm text-yellow-600" />
+          </div>
+          {cmd}.js
+        </div>
+      </div>
+    )
+
+    setCommand(dupeCmd)
+  }
 
   return (
     <>
@@ -49,18 +67,19 @@ export default function Sidebar({ collapsed }) {
                 <p className="font-bold mx-3">Project</p>
                 {
                   activeState == 0 ?
-                    <AiFillFileAdd className="text-white cursor-pointer" onClick={() => {
-                      Swal.fire({
-                        title: "File Type",
-                        confirmButtonText: "JavaScript",
-                        denyButtonText: "JSON",
-                        denyButtonColor: "#4287f5",
-                        cancelButtonText: "Text",
-                        showCancelButton: true,
-                        showDenyButton: true,
-                        text: "Select the type of file you want to create",
-                        icon: "question"
+                    <AiFillFileAdd className="text-white cursor-pointer" onClick={async () => {
+                      const { value: formValues } = await Swal.fire({
+                        title: 'Name your file',
+                        html: '<input id="swal-input1" class="swal2-input">',
+                        focusConfirm: false,
+                        preConfirm: () => {
+                          return [
+                            document.getElementById('swal-input1').value
+                          ]
+                        }
                       })
+
+                      addCommand(formValues)
                     }} size={"13%"} />
                     : ""
                 }
@@ -69,7 +88,7 @@ export default function Sidebar({ collapsed }) {
                 activeState === 0 ?
                   <>
                     <Command />
-                    {currentCommands ? currentCommands : ""}
+                    {command ? command : ""}
                     <Index />
                     <div className="w-[90%] h-[1px] rounded-lg mx-auto bg-white my-1"></div>
                     <Package />
