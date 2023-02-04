@@ -8,7 +8,7 @@ export default function FileSelector({ tabs }) {
     useEffect(() => {
         const reactTabs = tabs.map((value) => {
             return <>
-                <div className="items" onClick={() => {
+                <div className="items my-auto" onClick={() => {
                     switchFiles(value)
                 }}>
                     <div className="h-full w-full flex">
@@ -22,7 +22,7 @@ export default function FileSelector({ tabs }) {
     }, [])
 
     return (
-        <div className="w-full h-[5%] bg-stone-900 flex justify-start items-center">
+        <div className="w-full h-[5%] overflow-x-auto bg-stone-900 flex">
             {tabEle}
         </div>
     )

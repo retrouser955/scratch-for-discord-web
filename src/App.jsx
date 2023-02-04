@@ -11,11 +11,6 @@ import "./index.css"
 
 import "./blockly/blocks/discord/base/index"
 
-// development: unload localstorage on leave
-window.onunload = () => {
-  localStorage.clear()
-}
-
 console.log(
   "%cSTOP!!!!",
   "color:red;font-family:system-ui;font-size:4rem;-webkit-text-stroke: 1px black;font-weight:bold"
@@ -31,11 +26,8 @@ function App() {
 
   window.currentFile = "index"
 
-  if(storageData == null) {
+  if(storageData == null) 
     localStorage.setItem("index", "{}")
-    localStorage.setItem("ping", "{}")
-    localStorage.setItem("avatar", "{}")
-  }
 
   const cb = useCallback((element) => {
     if(element == null) return

@@ -33,7 +33,7 @@ export default function ToolboxUtils() {
                 <div className={`flex w-full justify-center mt-3 ${isPrefix ? "opacity-0" : "opacity-100"} transition-all`}>
                     <label htmlFor="prefix" className="mx-4 font-bold">Prefix</label>
                     <input type="text" name="prefix" defaultValue={"!"} maxLength={3} className={`text-white w-[40%] bg-stone-700 rounded-md px-2 border-none`} onChange={(e) => {
-                        localStorage.setItem("prefix" ,e.currentTarget.value)
+                        localStorage.setItem("prefix", e.currentTarget.value)
                     }} />
                 </div>
             </div>

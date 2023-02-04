@@ -16,11 +16,15 @@ export default function Sidebar({ collapsed, cmds }) {
   const [currentCommands, _setCurrentCommands] = cmds
   const [command, setCommand] = useState()
   const [isCollapsed, setIsCollapsed] = collapsed
+  const [isCurrentCmd, setIsCurrentCmd] = useState()
 
   useEffect(() => {
     setCommand(currentCommands.filter((val) => val != "index").map((val) => {
-      return <div className="flex justify-center cursor-pointer ml-3" onClick={() => switchFiles(val)} key={val}>
-        <div className="w-full pl-3 font-bold flex items-center h-7 hover:shadow-lg hover:border-2 border-l-2 transition-all">
+      return <div className="flex justify-center cursor-pointer ml-3" onClick={() => {
+        setIsCurrentCmd(val)
+        switchFiles(val)
+      }} key={val}>
+        <div className={`w-full ${isCurrentCmd === val ? "bottom-2" : ""} pl-3 font-bold flex items-center h-7 hover:shadow-lg hover:border-2 border-l-2 transition-all`}>
           <div className="h-[70%] mr-1">
             <SiJavascript className="h-full w-full bg-white rounded-sm text-yellow-600" />
           </div>
@@ -35,8 +39,11 @@ export default function Sidebar({ collapsed, cmds }) {
     
     const dupeCmd = [...command]
     dupeCmd.push(
-      <div className="flex justify-center cursor-pointer ml-3" onClick={() => switchFiles(cmd)} key={cmd}>
-        <div className="w-full pl-3 font-bold flex items-center h-7 hover:shadow-lg hover:border-2 border-l-2 transition-all">
+      <div className="flex justify-center cursor-pointer ml-3" onClick={() => {
+        setIsCurrentCmd(cmd)
+        switchFiles(cmd)
+      }} key={cmd}>
+        <div className={`w-full pl-3 ${isCurrentCmd === cmd ? "bottom-2" : ""} font-bold flex items-center h-7 hover:shadow-lg hover:border-2 border-l-2 transition-all`}>
           <div className="h-[70%] mr-1">
             <SiJavascript className="h-full w-full bg-white rounded-sm text-yellow-600" />
           </div>
