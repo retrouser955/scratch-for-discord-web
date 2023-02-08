@@ -10,6 +10,6 @@
 
 @layer {
     .items {
-        @apply h-[70%] bg-amber-600 w-[10vw] resize-none rounded-sm mx-2 text-white flex items-center pl-3 custom-font cursor-pointer font-bold border-2 overflow-hidden
+        @apply h-full w-[10vw] resize-none text-white flex items-center pl-3 custom-font cursor-pointer font-bold border-2 overflow-hidden
     }
 }
